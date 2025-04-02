@@ -1,0 +1,85 @@
+'\" t
+.\"     Title: dpterminate
+.\"    Author: Ted Cowan
+.\" Generator: Asciidoctor 1.5.5
+.\"      Date: 2019-03-08
+.\"    Manual: \ \&
+.\"    Source: \ \&
+.\"  Language: English
+.\"
+.TH "DPTERMINATE" "3" "2019-03-08" "\ \&" "\ \&"
+.ie \n(.g .ds Aq \(aq
+.el       .ds Aq '
+.ss \n[.ss] 0
+.nh
+.ad l
+.de URL
+\\$2 \(laURL: \\$1 \(ra\\$3
+..
+.if \n[.g] .mso www.tmac
+.LINKSTYLE blue R < >
+.SH "NAME"
+dpterminate \- generates the Dining Philosophers Report.
+.SH "SYNOPSIS"
+.sp
+\fB#include "dininglib.h"\fP
+.sp
+int dpTerminate();
+.SH "DESCRIPTION"
+.sp
+The \fBdpTerminate()\fP function outputs a report on STDOUT, summarizing the results of the Dining Philosophers run.
+.sp
+The report looks like this (your numbers will be different), assuming the simulation was run with 5 philosophers for 3 seconds:
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+Dining Philosophers Report
+
+Number of philosophers: 3 Duration: 5 seconds
+
+Philosopher:0 Dining:11363 Thinking:11363 Waiting:22281
+Philosopher:1 Dining:11363 Thinking:11362 Waiting:22209
+Philosopher:2 Dining:11575 Thinking:11575 Waiting:21865
+
+Lowest Dining Count: 11363
+Highest Dining Count: 11575
+Average Dining Count: 11433
+
+Lowest Thinking Count: 11362
+Highest Thinking Count: 11575
+Average Thinking Count: 11433
+
+Lowest Waiting Count: 21865
+Highest Waiting Count: 22281
+Average Waiting Count: 22118
+
+Fatal error count: 0
+.fi
+.if n \{\
+.RE
+.\}
+.SH "RETURN VALUES"
+.sp
+\fB0\fP
+.RS 4
+Success.  The function returns after sleeping.
+.RE
+.sp
+\fB\-1\fP
+.RS 4
+Failure and sets \fIerrno\fP to indicate the error.
+.RE
+.SH "ERRORS"
+.sp
+[EACCESS]
+.RS 4
+Library not initialized with \fBdpInitialize()\fP.
+.RE
+.SH "AUTHOR(S)"
+.sp
+\fBTed Cowan\fP
+.RS 4
+Author(s).
+.RE

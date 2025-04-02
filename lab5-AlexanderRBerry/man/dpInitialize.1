@@ -1,0 +1,58 @@
+'\" t
+.\"     Title: dpinitialize
+.\"    Author: Ted Cowan
+.\" Generator: Asciidoctor 1.5.5
+.\"      Date: 2019-03-08
+.\"    Manual: \ \&
+.\"    Source: \ \&
+.\"  Language: English
+.\"
+.TH "DPINITIALIZE" "3" "2019-03-08" "\ \&" "\ \&"
+.ie \n(.g .ds Aq \(aq
+.el       .ds Aq '
+.ss \n[.ss] 0
+.nh
+.ad l
+.de URL
+\\$2 \(laURL: \\$1 \(ra\\$3
+..
+.if \n[.g] .mso www.tmac
+.LINKSTYLE blue R < >
+.SH "NAME"
+dpinitialize \- initialize the structures used by the dining philosophers library dininglib.o
+.SH "SYNOPSIS"
+.sp
+\fB#include "dininglib.h"\fP
+.sp
+int
+dpInitialize(\fIint\fP \fIcount\fP, \fIint\fP \fIdiningTime\fP);
+.SH "DESCRIPTION"
+.sp
+The \fBdpInitialize()\fP function establishes the "chopsticks" table and related structures.
+Users of the dininglib.o library must call this function before calling any other dininglib
+functions.
+.sp
+The argument \fIcount\fP is the number of philosophers for this run.  \fIcount\fP must be > 1 and < 10000.
+.sp
+The argument \fIdiningTime\fP is the number of seconds that the session will run
+before returning to the caller.  The caller will be put to sleep for this number of seconds. \fIdiningTime\fP must be > 0 and < 1000.
+.SH "RETURN VALUES"
+.sp
+\fB0\fP
+.RS 4
+Success.
+.RE
+.sp
+\fB\-1\fP
+.RS 4
+Failure and sets \fIerrno\fP to indicate the error.
+.RE
+.SH "ERRORS"
+.sp
+[EINVAL]                A catastrophic internal error occurred, or count or diningTime are invalid.
+.SH "AUTHOR(S)"
+.sp
+\fBTed Cowan\fP
+.RS 4
+Author(s).
+.RE

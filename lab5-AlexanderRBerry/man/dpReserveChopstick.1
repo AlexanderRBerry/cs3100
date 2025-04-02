@@ -1,0 +1,77 @@
+'\" t
+.\"     Title: dpreservechopstick
+.\"    Author: Ted Cowan
+.\" Generator: Asciidoctor 1.5.5
+.\"      Date: 2019-03-08
+.\"    Manual: \ \&
+.\"    Source: \ \&
+.\"  Language: English
+.\"
+.TH "DPRESERVECHOPSTICK" "3" "2019-03-08" "\ \&" "\ \&"
+.ie \n(.g .ds Aq \(aq
+.el       .ds Aq '
+.ss \n[.ss] 0
+.nh
+.ad l
+.de URL
+\\$2 \(laURL: \\$1 \(ra\\$3
+..
+.if \n[.g] .mso www.tmac
+.LINKSTYLE blue R < >
+.SH "NAME"
+dpreservechopstick \- attempts to reserve a chopstick for the calling thread.
+.SH "SYNOPSIS"
+.sp
+\fB#include "dininglib.h"\fP
+.sp
+int dpReserveChopstick(\fIint\fP \fIchopstick\fP);
+.SH "DESCRIPTION"
+.sp
+The \fBdpReserveChopstick()\fP function attempts to reserve the requested chopstick for the calling thread.  This function should only be called on the philosopher thread of a philosopher immediately to the left or right of the requested chopstick.
+.sp
+The argument \fInumber\fP is the number of chopstick to reserve.
+.sp
+This function must be called within a critical section.
+.SH "RETURN VALUES"
+.sp
+\fB0\fP
+.RS 4
+Success.
+.RE
+.sp
+\fB\-1\fP
+.RS 4
+Failure and sets \fIerrno\fP to indicate the error.
+.RE
+.SH "ERRORS"
+.sp
+[EACCESS]
+.RS 4
+Library not initialized with \fBdpInitialize()\fP or thread did not call \fBdpShortWait()\fP after a previous call to this function returned EAGAIN.
+.RE
+.sp
+[EBUSY]
+.RS 4
+Another philosopher thread is in the process of reserving or releasing a chopstick.
+.RE
+.sp
+[EINVAL]
+.RS 4
+This chopstick is not available to this philosopher or the philosopher is not registered.
+.RE
+.sp
+[EDEADLK]
+.RS 4
+The left chopstick must be reserved before the right chopstick.
+.RE
+.sp
+[EAGAIN]
+.RS 4
+The requested chopstick is in use; try again by calling dpShortWait() first.
+.RE
+.SH "AUTHOR(S)"
+.sp
+\fBTed Cowan\fP
+.RS 4
+Author(s).
+.RE

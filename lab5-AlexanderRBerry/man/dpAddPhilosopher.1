@@ -1,0 +1,69 @@
+'\" t
+.\"     Title: dpaddphilosopher
+.\"    Author: Ted Cowan
+.\" Generator: Asciidoctor 1.5.5
+.\"      Date: 2019-03-08
+.\"    Manual: \ \&
+.\"    Source: \ \&
+.\"  Language: English
+.\"
+.TH "DPADDPHILOSOPHER" "3" "2019-03-08" "\ \&" "\ \&"
+.ie \n(.g .ds Aq \(aq
+.el       .ds Aq '
+.ss \n[.ss] 0
+.nh
+.ad l
+.de URL
+\\$2 \(laURL: \\$1 \(ra\\$3
+..
+.if \n[.g] .mso www.tmac
+.LINKSTYLE blue R < >
+.SH "NAME"
+dpaddphilosopher \- registers a philosopher to the dining table
+.SH "SYNOPSIS"
+.sp
+\fB#include "dininglib.h"\fP
+.sp
+int
+dpAddPhilosopher(\fIint\fP \fInumber\fP);
+.SH "DESCRIPTION"
+.sp
+The \fBdpAddPhilosopher()\fP function registers a philosopher at the dining table by its \fInumber\fP.
+Users of the dininglib.c library must call this function before calling any other dininglib
+functions that refer to a philosopher by number.  This function must be called by the thread
+of the philosopher, and only once.
+.sp
+The argument \fInumber\fP is the number of this philosopher for this run, from 0 to count\-1.
+.SH "RETURN VALUES"
+.sp
+\fB0\fP
+.RS 4
+Success.
+.RE
+.sp
+\fB\-1\fP
+.RS 4
+Failure and sets \fIerrno\fP to indicate the error.
+.RE
+.SH "ERRORS"
+.sp
+[EACCESS]
+.RS 4
+Library not initialized with \fBdpInitialize()\fP.
+.RE
+.sp
+[EINVAL]
+.RS 4
+\fInumber\fP is less than zero or greater than the number of philosophers initialized.
+.RE
+.sp
+[EINVAL]
+.RS 4
+The specified philosopher has already been added.
+.RE
+.SH "AUTHOR(S)"
+.sp
+\fBTed Cowan\fP
+.RS 4
+Author(s).
+.RE

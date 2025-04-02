@@ -1,0 +1,58 @@
+'\" t
+.\"     Title: dpthink
+.\"    Author: Ted Cowan
+.\" Generator: Asciidoctor 1.5.5
+.\"      Date: 2019-03-08
+.\"    Manual: \ \&
+.\"    Source: \ \&
+.\"  Language: English
+.\"
+.TH "DPTHINK" "3" "2019-03-08" "\ \&" "\ \&"
+.ie \n(.g .ds Aq \(aq
+.el       .ds Aq '
+.ss \n[.ss] 0
+.nh
+.ad l
+.de URL
+\\$2 \(laURL: \\$1 \(ra\\$3
+..
+.if \n[.g] .mso www.tmac
+.LINKSTYLE blue R < >
+.SH "NAME"
+dpthink \- emulate discussion and thinking by the calling philosopher. The philosopher who calls this function must not have any chopsticks reserved.
+.SH "SYNOPSIS"
+.sp
+\fB#include "dininglib.h"\fP
+.sp
+int dpThink();
+.SH "DESCRIPTION"
+.sp
+The \fBdpThink()\fP function simulates thinking by putting the calling thread to sleep for a short period of time.  This function should only be called on the philosopher thread with no chopsticks reserved and after calling dpDine().
+.SH "RETURN VALUES"
+.sp
+\fB0\fP
+.RS 4
+Success.  The function returns after sleeping.
+.RE
+.sp
+\fB\-1\fP
+.RS 4
+Failure and sets \fIerrno\fP to indicate the error.
+.RE
+.SH "ERRORS"
+.sp
+[EACCESS]
+.RS 4
+Library not initialized with \fBdpInitialize()\fP.
+.RE
+.sp
+[EINVAL]
+.RS 4
+One or more chopsticks are currently reserved for this philosopher; dpDine() not previously called.
+.RE
+.SH "AUTHOR(S)"
+.sp
+\fBTed Cowan\fP
+.RS 4
+Author(s).
+.RE
